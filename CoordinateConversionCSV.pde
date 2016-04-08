@@ -31,28 +31,28 @@ void setup() {
   saveTable(outputTable, "data/new.csv");
 }
 
+void draw () {}
 
-void draw () {
+float[] sphericalToCartesian(float azi, float ele, float dis) {  
+  ele = 90 - ele;
   
-}
-
-float[] sphericalToCartesian(float azi, float ele, float dis) {
+  azi = radians(azi);
+  ele = radians(ele);
   
-  ele = 90-ele;
-  azi = radians (azi);
-  ele = radians (ele);
   float x = sin(ele) * cos(azi) * dis;
   float y = sin(ele) * sin(azi) * dis;
   float z = cos(ele) * dis;
-  if(x < 0.0001){
+
+  if(abs(x) < 0.0001){
     x=0;
   }
-  if(y < 0.0001){
+  if(abs(y) < 0.0001){
     y=0;
   }
-  if(z < 0.0001){
+  if(abs(z) < 0.0001){
     z=0;
   }
+  
   float[] vals = {x, y, z};
   return vals;
 }
